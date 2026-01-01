@@ -1,0 +1,27 @@
+{
+  "name": "multi-chain-quote-aggregator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "lint": "echo 'Add your linter of choice'"
+  },
+  "dependencies": {
+    "@pancakeswap/sdk": "^4.0.0",
+    "@raydium-io/raydium-sdk": "^1.2.2",
+    "@uniswap/sdk": "^3.0.4",
+    "@uniswap/sdk-core": "^3.3.0",
+    "@uniswap/v3-sdk": "^3.12.0",
+    "axios": "^1.6.0",
+    "ethers": "^6.7.0",
+    "express": "^4.19.2",
+    "jsbi": "^4.3.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}
