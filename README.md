@@ -85,3 +85,19 @@ The 1155-to-20 use the [More-Minimal Proxy bytecode by Oage](https://medium.com/
 - https://eips.ethereum.org/EIPS/eip-1167
 - https://blog.openzeppelin.com/deep-dive-into-the-minimal-proxy-contract/
 - https://medium.com/coinmonks/the-more-minimal-proxy-5756ae08ee48
+## Multi-chain swap aggregator (production-grade wallet stack)
+
+This repository now also contains a minimal production template for a multi-chain wallet capable of quoting and executing swaps through multiple DEXs (Uniswap/Sushi/Pancake/Raydium) across Ethereum, BSC, Polygon, Arbitrum, and Solana.
+
+### Solidity execution router
+- `contracts/aggregator/AggregatorRouter.sol` implements a hardened split-route router with permit support and native V2/V3 adapters.
+- Interfaces for ERC20/permit and V2/V3 routers live under `contracts/aggregator/interfaces` with lightweight security helpers in `contracts/aggregator/libraries`.
+
+### Quote backend
+- `backend/` packages a Node.js (TypeScript) quote API that models pools as a graph and picks the highest-output route with slippage simulation.
+- Run `cd backend && npm install && npm run dev` to start the HTTP server and obtain quotes at `POST /quote`.
+
+### Front-end hook
+- `frontend/src/hooks/useAggregator.ts` demonstrates how a React/React Native client can call the router via `ethers`, passing split paths and optional permits.
+
+The components are designed to be extended with real pool discovery (multicall or indexer) and execution monitoring while keeping the core pathway (quote -> best route -> on-chain swap) intact.
